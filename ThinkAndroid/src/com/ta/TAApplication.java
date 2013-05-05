@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013  WhiteCat °×Ã¨ (www.thinkandroid.cn)
+ * Copyright (C) 2013  WhiteCat ï¿½ï¿½Ã¨ (www.thinkandroid.cn)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,17 +44,17 @@ import android.os.Message;
 
 public class TAApplication extends Application implements TAIResponseListener
 {
-	/** ÅäÖÃÆ÷ ÎªPreference */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ÎªPreference */
 	public final static int PREFERENCECONFIG = 0;
-	/** ÅäÖÃÆ÷ ÎªPROPERTIESCONFIG */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ÎªPROPERTIESCONFIG */
 	public final static int PROPERTIESCONFIG = 1;
-	/** ÅäÖÃÆ÷ */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private TAIConfig mCurrentConfig;
-	/** »ñÈ¡²¼¾ÖÎÄ¼þID¼ÓÔØÆ÷ */
+	/** ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private TAILayoutLoader mLayoutLoader;
-	/** ¼ÓÔØÀà×¢ÈëÆ÷ */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ */
 	private TAInjector mInjector;
-	/** AppÒì³£±ÀÀ£´¦ÀíÆ÷ */
+	/** Appï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private UncaughtExceptionHandler uncaughtExceptionHandler;
 	private static TAApplication application;
 	private TACommandExecutor mCommandExecutor;
@@ -62,11 +62,11 @@ public class TAApplication extends Application implements TAIResponseListener
 	private final HashMap<String, Class<? extends TAActivity>> registeredActivities = new HashMap<String, Class<? extends TAActivity>>();
 	private Stack<ActivityStackInfo> activityStack = new Stack<ActivityStackInfo>();
 	private NavigationDirection currentNavigationDirection;
-	/** ThinkAndroid ÎÄ¼þ»º´æ */
+	/** ThinkAndroid ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private TAFileCache mFileCache;
-	/** ThinkAndroidÊý¾Ý¿âÁ´½Ó³Ø */
+	/** ThinkAndroidï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ */
 	private TASQLiteDatabasePool mSQLiteDatabasePool;
-	/** ThinkAndroid Ó¦ÓÃ³ÌÐòÔËÐÐActivity¹ÜÀíÆ÷ */
+	/** ThinkAndroid Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Activityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private TAAppManager mAppManager;
 	private Boolean networkAvailable = false;
 
@@ -85,13 +85,13 @@ public class TAApplication extends Application implements TAIResponseListener
 	{
 		// TODO Auto-generated method stub
 		this.application = this;
-		// ×¢²áAppÒì³£±ÀÀ£´¦ÀíÆ÷
+		// ×¢ï¿½ï¿½Appï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Thread.setDefaultUncaughtExceptionHandler(getUncaughtExceptionHandler());
 		mCommandExecutor = TACommandExecutor.getInstance();
 	}
 
 	/**
-	 * »ñÈ¡Application
+	 * ï¿½ï¿½È¡Application
 	 * 
 	 * @return
 	 */
@@ -146,7 +146,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	{
 		if (mCurrentConfig == null)
 		{
-			getPreferenceConfig();
+		mCurrentConfig=getPreferenceConfig();
 		}
 		return mCurrentConfig;
 	}
@@ -155,7 +155,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	{
 		if (mLayoutLoader == null)
 		{
-			TALayoutLoader.getInstance(this);
+		mLayoutLoader=TALayoutLoader.getInstance(this);
 		}
 		return mLayoutLoader;
 	}
@@ -166,7 +166,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	}
 
 	/**
-	 * ÉèÖÃ AppÒì³£±ÀÀ£´¦ÀíÆ÷
+	 * ï¿½ï¿½ï¿½ï¿½ Appï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param uncaughtExceptionHandler
 	 */
@@ -502,10 +502,10 @@ public class TAApplication extends Application implements TAIResponseListener
 	}
 
 	/**
-	 * ÍË³öÓ¦ÓÃ³ÌÐò
+	 * ï¿½Ë³ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ï¿½
 	 * 
 	 * @param isBackground
-	 *            ÊÇ·ñ¿ª¿ªÆôºóÌ¨ÔËÐÐ,Èç¹ûÎªtrueÔòÎªºóÌ¨ÔËÐÐ
+	 *            ï¿½Ç·ñ¿ª¿ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Îªtrueï¿½ï¿½Îªï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void exitApp(Boolean isBackground)
 	{
@@ -513,7 +513,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÍøÂç×´Ì¬£¬trueÎªÍøÂçÁ¬½Ó³É¹¦£¬·ñÔòÍøÂçÁ¬½ÓÊ§°Ü
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½trueÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 	 * 
 	 * @return
 	 */

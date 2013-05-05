@@ -1,6 +1,6 @@
 #ThinkAndroid 交流平台
 * QQ群：169415162
-  网址：[http://www.thinkandroid.cn](http://www.thinkandroid.cn)
+* 网址：[http://www.thinkandroid.cn](http://www.thinkandroid.cn)
 ----
 #  ThinkAndroid简介 
 * ThinkAndroid是包含Android mvc和简易sqlite orm以及ioc模块，它封装了Android httpclitent中的http模块,

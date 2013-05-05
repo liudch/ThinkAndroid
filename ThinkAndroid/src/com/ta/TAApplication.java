@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013  WhiteCat ��è (www.thinkandroid.cn)
+ * Copyright (C) 2013  WhiteCat 白猫 (www.thinkandroid.cn)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,17 +44,17 @@ import android.os.Message;
 
 public class TAApplication extends Application implements TAIResponseListener
 {
-	/** ������ ΪPreference */
+	/** 配置器 为Preference */
 	public final static int PREFERENCECONFIG = 0;
-	/** ������ ΪPROPERTIESCONFIG */
+	/** 配置器 为PROPERTIESCONFIG */
 	public final static int PROPERTIESCONFIG = 1;
-	/** ������ */
+	/** 配置器 */
 	private TAIConfig mCurrentConfig;
-	/** ��ȡ�����ļ�ID������ */
+	/** 获取布局文件ID加载器 */
 	private TAILayoutLoader mLayoutLoader;
-	/** ������ע���� */
+	/** 加载类注入器 */
 	private TAInjector mInjector;
-	/** App�쳣���������� */
+	/** App异常崩溃处理器 */
 	private UncaughtExceptionHandler uncaughtExceptionHandler;
 	private static TAApplication application;
 	private TACommandExecutor mCommandExecutor;
@@ -62,11 +62,11 @@ public class TAApplication extends Application implements TAIResponseListener
 	private final HashMap<String, Class<? extends TAActivity>> registeredActivities = new HashMap<String, Class<? extends TAActivity>>();
 	private Stack<ActivityStackInfo> activityStack = new Stack<ActivityStackInfo>();
 	private NavigationDirection currentNavigationDirection;
-	/** ThinkAndroid �ļ����� */
+	/** ThinkAndroid 文件缓存 */
 	private TAFileCache mFileCache;
-	/** ThinkAndroid���ݿ����ӳ� */
+	/** ThinkAndroid数据库链接池 */
 	private TASQLiteDatabasePool mSQLiteDatabasePool;
-	/** ThinkAndroid Ӧ�ó�������Activity������ */
+	/** ThinkAndroid 应用程序运行Activity管理器 */
 	private TAAppManager mAppManager;
 	private Boolean networkAvailable = false;
 
@@ -85,13 +85,13 @@ public class TAApplication extends Application implements TAIResponseListener
 	{
 		// TODO Auto-generated method stub
 		this.application = this;
-		// ע��App�쳣����������
+		// 注册App异常崩溃处理器
 		Thread.setDefaultUncaughtExceptionHandler(getUncaughtExceptionHandler());
 		mCommandExecutor = TACommandExecutor.getInstance();
 	}
 
 	/**
-	 * ��ȡApplication
+	 * 获取Application
 	 * 
 	 * @return
 	 */
@@ -146,7 +146,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	{
 		if (mCurrentConfig == null)
 		{
-		mCurrentConfig=getPreferenceConfig();
+			mCurrentConfig=getPreferenceConfig();
 		}
 		return mCurrentConfig;
 	}
@@ -155,7 +155,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	{
 		if (mLayoutLoader == null)
 		{
-		mLayoutLoader=TALayoutLoader.getInstance(this);
+			mLayoutLoader=TALayoutLoader.getInstance(this);
 		}
 		return mLayoutLoader;
 	}
@@ -166,7 +166,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	}
 
 	/**
-	 * ���� App�쳣����������
+	 * 设置 App异常崩溃处理器
 	 * 
 	 * @param uncaughtExceptionHandler
 	 */
@@ -502,10 +502,10 @@ public class TAApplication extends Application implements TAIResponseListener
 	}
 
 	/**
-	 * �˳�Ӧ�ó���
+	 * 退出应用程序
 	 * 
 	 * @param isBackground
-	 *            �Ƿ񿪿�����̨����,����Ϊtrue��Ϊ��̨����
+	 *            是否开开启后台运行,如果为true则为后台运行
 	 */
 	public void exitApp(Boolean isBackground)
 	{
@@ -513,7 +513,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	}
 
 	/**
-	 * ��ȡ��ǰ����״̬��trueΪ�������ӳɹ���������������ʧ��
+	 * 获取当前网络状态，true为网络连接成功，否则网络连接失败
 	 * 
 	 * @return
 	 */

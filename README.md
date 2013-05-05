@@ -515,6 +515,39 @@ downloadManager = DownloadManager.getDownloadManager();
 ```
 
 
+* 后台下载
+
+```java
+	private IDownloadService downloadService;
+	ServiceConnection serviceConnection=new ServiceConnection()
+	{
+		
+		@Override
+		public void onServiceDisconnected(ComponentName name)
+		{
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service)
+		{
+			// TODO Auto-generated method stub
+			downloadService=(IDownloadService)service;
+		}
+	};
+	
+	//添加任务
+	downloadService.addTask(url)
+	//暂停任务
+ 	downloadService.pauseTask(url)
+ 	//继续任务
+ 	downloadService.continueTask(url)
+ 	//删除任务
+	downloadService.deleteTask(url)
+```
+
+
 ## 配置器模
 可以对简易的实现配对配置的操作，目前配置文件可以支持Preference、Properties对配置进行存取
 

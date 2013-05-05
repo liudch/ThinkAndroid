@@ -481,7 +481,60 @@ TALogger.addLogger(new TAPrintToFileLogger());
 TALogger.d(TestActivity.this, "test");
 
 
-##配置器模块
+
+##下载器模块
+可以简单的实现多线程下载、后台下载、断点续传、对下载进行控制、如开始、暂停、删除等等。
+```java
+private DownloadManager downloadManager;
+downloadManager = DownloadManager.getDownloadManager();
+		downloadManager.setDownLoadCallback(new DownLoadCallback()
+		{
+			@Override
+			public void onSuccess(String url)
+			{
+			
+			}
+
+			@Override
+			public void onLoading(String url, String speed, String progress)
+			{
+				// TODO Auto-generated method stub
+
+			
+			}
+		});
+		//添加
+		downloadManager.addHandler(url);
+		//继续
+		downloadManager.continueHandler(url);
+		//暂停
+		downloadManager.pauseHandler(url);
+		//删除
+		downloadManager.deleteHandler(url);
+		//
+```
+
+
+## 配置器模
+可以对简易的实现配对配置的操作，目前配置文件可以支持Preference、Properties对配置进行存取
+
+```java
+	TAIConfig config = application
+				.getConfig(TAApplication.PROPERTIESCONFIG);
+		Entity entity = new Entity();
+		entity.setB(false);
+		entity.setD(10);
+		entity.setI(1);
+		entity.setF(1f);
+		config.setConfig(entity);
+		Entity cEntity = config.getConfig(Entity.class);
+		textView.setText(cEntity.toString());
+```
+
+
+## 网络状态检测模块
+当网络状态改变时，对其进行检测。
+NetworkStateReceiver  
 
 
 #关于作者

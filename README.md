@@ -147,9 +147,9 @@ public class ThinkAndroidDemoActivity extends TAActivity {
 	Entity entity; //目前只能对无参构造函数进行初始化
 	@TAInjectResource(R.string.app_name)
 	String appNameString;
-	@TAInjectResource(R.attr.test)
+	@TAInjectResource(id=R.attr.test)
 	int[] test; 
-	@TAInjectView(R.id.add);
+	@TAInjectView(id=R.id.add);
 	Button addButton;
 }
 

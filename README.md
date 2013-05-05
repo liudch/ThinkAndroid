@@ -151,7 +151,7 @@ public class ThinkAndroidDemoActivity extends TAActivity {
 ```
 
 ##数据库模块
-*android中的orm框架，使用了线程池对sqlite进行操作。
+* android中的orm框架，使用了线程池对sqlite进行操作。
 ```java
 public class ThinkAndroidDemoActivity extends TAActivity {
 
@@ -167,7 +167,6 @@ public class ThinkAndroidDemoActivity extends TAActivity {
 
 ##Http模块使用方法：
 ###异步get方法
-
 ```java
   AsyncHttpClient client = new AsyncHttpClient();
 		client.get("http://www.thinkandroid.cn/", new AsyncHttpResponseHandler()
@@ -327,7 +326,7 @@ RequestParams params = new RequestParams();
 
 
 ##图片模块 方法 
-*imageview加载图片的时候无需考虑图片加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。
+* imageview加载图片的时候无需考虑图片加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。
 ```java
 
 package com.test;
@@ -404,8 +403,8 @@ public class Adapter extends BaseAdapter
 ```
 
 ##缓存模块 方法 
-*很简单的实现缓存，以一个简单的文件缓存为例
-*下载处理类
+* 很简单的实现缓存，以一个简单的文件缓存为例
+* 下载处理类
 ```java
 package com.test.file;
 
@@ -424,7 +423,7 @@ public class TAProcessStringHandler extends TAProcessDataHandler
 }
 ```
 
-*缓存结果返回操作类
+* 缓存结果返回操作类
 ```java
 package com.test.file;
 
@@ -456,7 +455,7 @@ public class TAStringCallBackHandler extends TACallBackHandler<TextView>
 	}
 }
 ```
-*程序调用
+* 程序调用
 ```java
 TAFileCacheWork<TextView> taFileCacheWork=new TAFileCacheWork<TextView>();
   	taFileCacheWork.setFileCache(getTAApplication().getFileCache());

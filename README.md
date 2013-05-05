@@ -152,6 +152,7 @@ public class ThinkAndroidDemoActivity extends TAActivity {
 
 ##数据库模块
 * android中的orm框架，使用了线程池对sqlite进行操作。
+
 ```java
 public class ThinkAndroidDemoActivity extends TAActivity {
 
@@ -404,6 +405,7 @@ public class Adapter extends BaseAdapter
 ##缓存模块 方法 
 * 很简单的实现缓存，以一个简单的文件缓存为例
 * 下载处理类
+
 ```java
 package com.test.file;
 
@@ -423,6 +425,7 @@ public class TAProcessStringHandler extends TAProcessDataHandler
 ```
 
 * 缓存结果返回操作类
+
 ```java
 package com.test.file;
 
@@ -455,6 +458,7 @@ public class TAStringCallBackHandler extends TACallBackHandler<TextView>
 }
 ```
 * 程序调用
+
 ```java
 TAFileCacheWork<TextView> taFileCacheWork=new TAFileCacheWork<TextView>();
   	taFileCacheWork.setFileCache(getTAApplication().getFileCache());

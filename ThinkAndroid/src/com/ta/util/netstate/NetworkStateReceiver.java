@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013  WhiteCat °×Ã¨ (www.thinkandroid.cn)
+ * Copyright (C) 2013  WhiteCat ç™½çŒ« (www.thinkandroid.cn)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,14 @@
  */
 package com.ta.util.netstate;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import com.ta.TAApplication;
 import com.ta.util.TALogger;
+import com.ta.util.netstate.NetWorkUtil.netType;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,44 +31,133 @@ import android.content.Intent;
 /**
  * @Title NetworkStateReceiver
  * @Package com.ta.util.netstate
- * @Description ÊÇÒ»¸ö¼ì²âÍøÂç×´Ì¬¸Ä±äµÄ£¬ĞèÒªÅäÖÃ <receiver
+ * @Description æ˜¯ä¸€ä¸ªæ£€æµ‹ç½‘ç»œçŠ¶æ€æ”¹å˜çš„ï¼Œéœ€è¦é…ç½® <receiver
  *              android:name="com.ta.core.util.extend.net.NetworkStateReceiver"
  *              > <intent-filter> <action
  *              android:name="android.net.conn.CONNECTIVITY_CHANGE" /> <action
  *              android:name="android.cat.conn.CONNECTIVITY_CHANGE" />
  *              </intent-filter> </receiver>
- * @author °×Ã¨
- * @date 2013-1-22 ÏÂÎç 9:35
- * @version V1.0
+ * @author ç™½çŒ«
+ * @date 2013-5-5 ä¸‹åˆ 22:47
+ * @version V1.2
  */
 public class NetworkStateReceiver extends BroadcastReceiver
 {
 	private static Boolean networkAvailable = false;
+	private netType netType;
+	private static HashMap<String, TANetChangeObserver> netChangeObserverHashMap = new HashMap<String, TANetChangeObserver>();
 
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		TALogger.i(NetworkStateReceiver.this, "ÍøÂç×´Ì¬¸Ä±ä.");
+		TALogger.i(NetworkStateReceiver.this, "ç½‘ç»œçŠ¶æ€æ”¹å˜.");
+		Iterator<Entry<String, TANetChangeObserver>> iter = netChangeObserverHashMap
+				.entrySet().iterator();
 		if (!NetWorkUtil.isNetworkAvailable(context))
 		{
-			TALogger.i(NetworkStateReceiver.this, "ÍøÂçÃ»ÓĞÁ¬½Ó.");
+			TALogger.i(NetworkStateReceiver.this, "æ²¡æœ‰ç½‘ç»œè¿æ¥.");
+
 			networkAvailable = false;
 		} else
 		{
-			TALogger.i(NetworkStateReceiver.this, "ÍøÂçÁ¬½Ó³É¹¦.");
+			TALogger.i(NetworkStateReceiver.this, "ç½‘ç»œè¿æ¥æˆåŠŸ.");
+			netType = NetWorkUtil.getAPNType(context);
 			networkAvailable = true;
 		}
-
+		while (iter.hasNext())
+		{
+			Map.Entry<String, TANetChangeObserver> entry = iter.next();
+			TANetChangeObserver observer = entry.getValue();
+			if (observer != null)
+			{
+				notifyObserver(observer);
+			}
+		}
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÍøÂç×´Ì¬£¬trueÎªÍøÂçÁ¬½Ó³É¹¦£¬·ñÔòÍøÂçÁ¬½ÓÊ§°Ü
+	 * è·å–å½“å‰ç½‘ç»œçŠ¶æ€ï¼Œtrueä¸ºç½‘ç»œè¿æ¥æˆåŠŸï¼Œå¦åˆ™ç½‘ç»œè¿æ¥å¤±è´¥
 	 * 
 	 * @return
 	 */
 	public static Boolean isNetworkAvailable()
 	{
 		return networkAvailable;
+	}
+
+	public netType getAPNType()
+	{
+		return netType;
+	}
+
+	private void notifyObserver(TANetChangeObserver observer)
+	{
+
+		if (isNetworkAvailable())
+		{
+			observer.connect(netType);
+		} else
+		{
+			observer.disConnect();
+		}
+	}
+
+	/**
+	 * æ³¨å†Œç½‘ç»œè¿æ¥è§‚å¯Ÿè€…
+	 * 
+	 * @param observerKey
+	 *            observerKey
+	 * @param observer
+	 *            ç½‘ç»œå˜åŒ–è§‚å¯Ÿè€…
+	 */
+	public static void registerObserver(String observerKey,
+			TANetChangeObserver observer)
+	{
+		if (netChangeObserverHashMap == null)
+		{
+			netChangeObserverHashMap = new HashMap<String, TANetChangeObserver>();
+		}
+		netChangeObserverHashMap.put(observerKey, observer);
+	}
+
+	/**
+	 * æ³¨å†Œç½‘ç»œè¿æ¥è§‚å¯Ÿè€…
+	 * 
+	 * @param resID
+	 *            observerKeyçš„ èµ„æºid
+	 * @param observer
+	 *            ç½‘ç»œå˜åŒ–è§‚å¯Ÿè€…
+	 */
+	public static void registerObserver(int resID, TANetChangeObserver observer)
+	{
+		String observerKey = TAApplication.getApplication().getString(resID);
+		registerObserver(observerKey, observer);
+	}
+
+	/**
+	 * æ³¨é”€ç½‘ç»œè¿æ¥è§‚å¯Ÿè€…
+	 * 
+	 * @param resID
+	 *            observerKey
+	 */
+	public static void unRegisterObserver(String observerKey)
+	{
+		if (netChangeObserverHashMap != null)
+		{
+			netChangeObserverHashMap.remove(observerKey);
+		}
+	}
+
+	/**
+	 * æ³¨é”€ç½‘ç»œè¿æ¥è§‚å¯Ÿè€…
+	 * 
+	 * @param resID
+	 *            observerKey
+	 */
+	public static void unRegisterObserver(int resID)
+	{
+		String observerKey = TAApplication.getApplication().getString(resID);
+		unRegisterObserver(observerKey);
 	}
 
 }

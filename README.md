@@ -1,6 +1,6 @@
 #ThinkAndroid 交流平台
 * QQ群：169415162
-* 网址：[http://www.thinkandroid.cn](http://www.thinkandroid.cn)
+  网址：[http://www.thinkandroid.cn](http://www.thinkandroid.cn)
 ----
 #  ThinkAndroid简介 
 * ThinkAndroid是包含Android mvc和简易sqlite orm以及ioc模块，它封装了Android httpclitent中的http模块,
@@ -52,7 +52,8 @@ Activity必须继承TAActivity
 ----
 ##ThinkAndroid使用方法：
 关于ThinkAndroid的更多介绍，请点击[这里](http://www.thinkandroid.cn/forum.php?mod=forumdisplay&fid=36)
-*MVC模块
+##MVC模块
+* MVC模块：实现视图与模型的分离。
 ```java
   getTAApplication().registerCommand(R.string.comand,
 				TAIdentityCommand.class);

@@ -327,10 +327,9 @@ RequestParams params = new RequestParams();
 
 ##图片模块 方法 
 * imageview加载图片的时候无需考虑图片加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。
+
 ```java
-
 package com.test;
-
 import com.ta.TAApplication;
 import com.ta.util.bitmap.TABitmapCacheWork;
 import com.ta.util.bitmap.TADownloadBitmapHandler;

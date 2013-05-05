@@ -56,6 +56,7 @@ Activity必须继承TAActivity
 关于ThinkAndroid的更多介绍，请点击[这里](http://www.thinkandroid.cn/forum.php?mod=forumdisplay&fid=36)
 ##MVC模块
 * MVC模块：实现视图与模型的分离。
+
 ```java
   getTAApplication().registerCommand(R.string.comand,
 				TAIdentityCommand.class);
@@ -150,6 +151,7 @@ public class ThinkAndroidDemoActivity extends TAActivity {
 	@TAInjectView(R.id.add);
 	Button addButton;
 }
+
 ```
 
 ##数据库模块

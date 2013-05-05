@@ -476,7 +476,6 @@ TAFileCacheWork<TextView> taFileCacheWork=new TAFileCacheWork<TextView>();
 ##配置器模块
 
 
-
 #关于作者
 * ThinkAndroid交流网站：[http://www.thinkandroid.cn](http://www.thinkandroid.cn)
 * ThinkAndroid交流QQ群 ： 169415162

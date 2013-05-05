@@ -465,12 +465,12 @@ TAFileCacheWork<TextView> taFileCacheWork=new TAFileCacheWork<TextView>();
 ```
 
 ##打印模块使用方法
-*可以较快的轻易的是实现日志打印，支持日志打印的扩展，目前支持对sdcard写入本地打印、以及控制台打印
-*添加打印器
-*TALogger.addLogger(new TAPrintToFileLogger());
-*调用打印
- *TALogger.addLogger(new TAPrintToFileLogger());
- *TALogger.d(TestActivity.this, "test");
+可以较快的轻易的是实现日志打印，支持日志打印的扩展，目前支持对sdcard写入本地打印、以及控制台打印
+添加打印器
+TALogger.addLogger(new TAPrintToFileLogger());
+调用打印
+TALogger.addLogger(new TAPrintToFileLogger());
+TALogger.d(TestActivity.this, "test");
 
 
 ##配置器模块

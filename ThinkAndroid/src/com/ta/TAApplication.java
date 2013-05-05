@@ -155,7 +155,7 @@ public class TAApplication extends Application implements TAIResponseListener
 	{
 		if (mLayoutLoader == null)
 		{
-			TALayoutLoader.getInstance(this);
+			mLayoutLoader=TALayoutLoader.getInstance(this);
 		}
 		return mLayoutLoader;
 	}
